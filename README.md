@@ -294,7 +294,7 @@ Beauty Marketplace Sales Analysis
 │
 └── README.md
     Dokumentasi proyek yang menjelaskan dataset, proses
-    pengerjaan, dashboard, insight, dan struktur file.
+    pengerjaan, dashboard, insight, dan struktur filee.
 ```
 
 ## Author
@@ -302,5 +302,4 @@ Beauty Marketplace Sales Analysis
 **Intan**
 
 Mahasiswa Informatika
-
 Technical Test – Beauty Marketplace Sales Analysis
