@@ -283,11 +283,4 @@ Visualisasi:
 ├── dashboard_link       # File teks atau dokumen berisi tautan dashboard interaktif
 ├── insight_report.pdf   # Laporan analisis bisnis lengkap dalam format PDF
 └── README.md            # Dokumentasi utama proyek
-
 ---
-
-## Author
-
-**Intan**
-Mahasiswa Informatika
-Technical Test – Beauty Marketplace Sales Analysis
