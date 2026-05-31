@@ -1,31 +1,31 @@
 # Beauty Marketplace Sales Analysis
 
-## Overview
+## Deskripsi Proyek
 
-This project was created as part of a Data Analyst Technical Test for a Beauty & Cosmetic Marketplace business.
+Proyek ini dibuat sebagai bagian dari Technical Test Data Analyst untuk perusahaan Beauty & Cosmetic Marketplace.
 
-The objective of this analysis is to evaluate sales performance, marketplace effectiveness, product performance, customer behavior, and operational efficiency across multiple sales channels:
+Tujuan analisis adalah mengevaluasi performa penjualan, efektivitas marketplace, performa produk, perilaku pelanggan, dan efisiensi operasional berdasarkan data transaksi dari berbagai channel penjualan, yaitu:
 
-* TikTok Shop
 * Shopee
-* Official Website
+* TikTok Shop
+* Website Resmi
 * Offline Store
 
-The project focuses not only on dashboard creation but also on generating actionable business insights and recommendations.
+Fokus utama proyek ini tidak hanya pada visualisasi dashboard, tetapi juga menghasilkan insight bisnis yang dapat digunakan sebagai dasar pengambilan keputusan.
 
 ---
 
-## Dataset Description
+## Dataset
 
-### 1. Product Master Table (`product_code`)
+### 1. Tabel Product Master (`product_code`)
 
-Contains detailed information about each beauty product.
+Berisi informasi detail setiap produk.
 
 **Primary Key**
 
 * product_code
 
-**Important Columns**
+**Kolom Penting**
 
 * product_name
 * category
@@ -36,9 +36,9 @@ Contains detailed information about each beauty product.
 * rating_average
 * review_count
 
-### 2. Sales Transaction Table (`transactions`)
+### 2. Tabel Transactions (`transactions`)
 
-Contains sales transactions from all sales channels.
+Berisi seluruh transaksi penjualan dari berbagai channel.
 
 **Primary Key**
 
@@ -48,7 +48,7 @@ Contains sales transactions from all sales channels.
 
 * product_code
 
-**Important Columns**
+**Kolom Penting**
 
 * transaction_date
 * platform
@@ -64,15 +64,15 @@ Contains sales transactions from all sales channels.
 
 ---
 
-## Data Model
+## Data Modeling
 
-A Star Schema model was implemented.
+Model data yang digunakan adalah **Star Schema**.
 
 ### Fact Table
 
 * fact_sales_transactions
 
-### Dimension Tables
+### Dimension Table
 
 * dim_products
 * dim_calendar
@@ -80,71 +80,79 @@ A Star Schema model was implemented.
 Relationship:
 
 dim_products.product_code
+
 ↓
+
 fact_sales_transactions.product_code
 
-Relationship Type:
+Tipe Relationship:
 
 * One-to-Many
 * Single Direction Filter
 
 ---
 
-## Data Cleaning Process
+## Proses Data Cleaning
 
-Data cleaning was performed using Python and Google Sheets.
+Proses data cleaning dilakukan menggunakan Python dan Google Sheets.
 
-### Cleaning Activities
+### Tahapan Cleaning
 
-#### Missing Values
+#### 1. Pemeriksaan Missing Values
 
-* Checked all columns for null values.
-* `return_reason` missing values were handled based on business logic.
-* Missing return reasons for non-returned orders were labeled as "No Return".
+* Mengecek seluruh kolom yang memiliki nilai kosong.
+* Menangani missing value pada kolom `return_reason`.
+* Mengisi transaksi yang tidak diretur dengan nilai "No Return".
 
-#### Duplicate Check
+#### 2. Pemeriksaan Duplikasi
 
-* Verified transaction uniqueness using `transaction_id`.
-* Removed duplicate records if found.
+* Memastikan tidak terdapat duplikasi pada `transaction_id`.
 
-#### Data Type Validation
+#### 3. Validasi Tipe Data
 
-* Converted date fields into proper date format.
-* Ensured numeric columns were stored correctly.
+* Mengubah kolom tanggal menjadi format date.
+* Memastikan kolom numerik tersimpan dalam format yang sesuai.
 
-#### Business Validation
+#### 4. Validasi Data Bisnis
 
-* Verified:
+Melakukan pengecekan:
 
-  * net_sales ≤ gross_sales
-  * quantity > 0
-  * production_cost > 0
-  * stock_qty > 0
+* quantity > 0
+* net_sales ≤ gross_sales
+* production_cost > 0
+* stock_qty > 0
 
-#### Feature Engineering
+#### 5. Feature Engineering
 
-Created additional metrics:
+Membuat kolom dan metrik tambahan untuk mendukung analisis bisnis:
 
-* Profit
-* Profit Margin
-* Return Rate
-* Age Group
-* Campaign Performance
-* Top Returned Product
+Kolom Tambahan:
+- Year
+- Quarter
+- Month
+- Month Name
+- Day Name
+- Age Group
+
+Metrik Tambahan:
+- Profit
+- Profit Margin
+- Return Rate
+- Returned Transaction
 
 ---
 
-## Dashboard Structure
+## Struktur Dashboard
 
-### Page 1 — Executive Overview
+### Halaman 1 – Executive Overview
 
-Purpose:
-Provide a high-level overview of business performance.
+Tujuan:
+Memberikan gambaran umum performa bisnis.
 
-Contents:
+Visualisasi:
 
 * Total Sales
-* Total Transactions
+* Total Transaksi
 * Total Quantity Sold
 * Total Profit
 * Return Rate
@@ -154,12 +162,12 @@ Contents:
 
 ---
 
-### Page 2 — Marketplace Performance
+### Halaman 2 – Marketplace Performance
 
-Purpose:
-Evaluate channel effectiveness.
+Tujuan:
+Mengevaluasi performa masing-masing channel penjualan.
 
-Contents:
+Visualisasi:
 
 * Profit Margin by Platform
 * Top Payment Method
@@ -168,12 +176,12 @@ Contents:
 
 ---
 
-### Page 3 — Product Performance
+### Halaman 3 – Product Performance
 
-Purpose:
-Analyze product contribution and inventory condition.
+Tujuan:
+Menganalisis kontribusi produk terhadap bisnis.
 
-Contents:
+Visualisasi:
 
 * Top Best Selling Products
 * Low Stock Alert
@@ -182,12 +190,12 @@ Contents:
 
 ---
 
-### Page 4 — Customer & Operational Insight
+### Halaman 4 – Customer & Operational Insight
 
-Purpose:
-Understand customer behavior and operational performance.
+Tujuan:
+Memahami karakteristik pelanggan dan efisiensi operasional.
 
-Contents:
+Visualisasi:
 
 * Customer Age Distribution
 * Membership Tier Distribution
@@ -197,59 +205,59 @@ Contents:
 
 ---
 
-## Key Business Insights
+## Insight Utama
 
-### Marketplace Insights
+### Marketplace
 
-* Shopee generates the highest sales contribution.
-* TikTok Shop produces strong revenue but requires monitoring of platform fees.
-* Website and Offline Store show higher return rates.
+* Shopee menjadi channel dengan kontribusi penjualan terbesar.
+* TikTok Shop menghasilkan penjualan tinggi namun perlu memperhatikan biaya platform.
+* Website dan Offline Store memiliki tingkat retur yang relatif lebih tinggi.
 
-### Product Insights
+### Produk
 
-* Glow Matte Lip Cream is the best-selling product.
-* Several products are approaching low stock levels.
-* Skin Veil Foundation has the highest return volume.
+* Glow Matte Lip Cream menjadi produk terlaris.
+* Beberapa produk memiliki stok rendah dan berisiko mengalami stockout.
+* Skin Veil Foundation menjadi produk yang paling sering diretur.
 
-### Customer Insights
+### Pelanggan
 
-* Customers aged 35+ contribute the highest number of transactions.
-* Nearly half of customers belong to the Bronze membership tier.
-* Customer ratings remain relatively similar across platforms.
+* Kelompok usia 35+ merupakan segmen pelanggan terbesar.
+* Hampir 50% pelanggan berada pada tier Bronze.
+* Rata-rata rating pelanggan masih berada pada kisaran 3 dari 5.
 
-### Operational Insights
+### Operasional
 
-* Wrong Shade is the most common return reason.
-* Flash Sale campaign delivers the highest revenue.
-* Current return rate is 5.4% and should be monitored.
-
----
-
-## Recommendations
-
-### Revenue Growth
-
-* Strengthen Website sales contribution.
-* Reduce dependency on Shopee.
-
-### Customer Experience
-
-* Improve shade recommendation system.
-* Enhance customer service and product consultation.
-
-### Inventory Management
-
-* Prioritize restocking low-stock products.
-* Implement reorder point monitoring.
-
-### Customer Retention
-
-* Improve loyalty programs.
-* Encourage Bronze members to upgrade to higher tiers.
+* Wrong Shade menjadi alasan retur terbesar.
+* Flash Sale merupakan campaign dengan performa terbaik.
+* Return Rate saat ini berada di angka 5,4%.
 
 ---
 
-## Tools Used
+## Rekomendasi Bisnis
+
+### Peningkatan Penjualan
+
+* Meningkatkan kontribusi penjualan melalui Website.
+* Mengurangi ketergantungan terhadap satu marketplace.
+
+### Pengalaman Pelanggan
+
+* Menambahkan fitur rekomendasi shade.
+* Meningkatkan kualitas customer service.
+
+### Manajemen Persediaan
+
+* Memprioritaskan restock produk dengan stok rendah.
+* Menerapkan sistem reorder point.
+
+### Loyalitas Pelanggan
+
+* Mengembangkan program loyalty.
+* Mendorong pelanggan Bronze naik ke Silver dan Gold.
+
+---
+
+## Tools yang Digunakan
 
 ### Data Cleaning
 
@@ -257,25 +265,29 @@ Contents:
 * Pandas
 * Google Sheets
 
-### Visualization
+### Visualisasi
 
 * Looker Studio
 
+### Dokumentasi
+
+* Markdown
+
 ---
 
-## Files Included
+## Struktur File
 
-| File               | Description                           |
-| ------------------ | ------------------------------------- |
-| README.md          | Project documentation                 |
-| cleaning.py        | Data cleaning script                  |
-| insight_report.pdf | Business insights and recommendations |
-| dashboard_link     | Looker Studio dashboard link          |
+* README.md
+* cleaning.py
+* insight_report.pdf
+* dashboard_link
 
 ---
 
 ## Author
 
-Intan Putri Mansyur Pratama
-Beauty Marketplace Sales Analysis
-Data Analyst Technical Test Submission
+**Intan**
+
+Mahasiswa Informatika
+
+Technical Test – Beauty Marketplace Sales Analysis
